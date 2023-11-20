@@ -1,7 +1,10 @@
 # Week 2: Experiment tracking and testing
 
-## Further reading
+* Lecture: [slides](./lecture.pdf), [video](https://disk.yandex.ru/i/PPD0hT59TMPbrQ)
+* Seminar: see the [example_project](./example_project) directory, [video](https://disk.yandex.ru/i/UklaZaGmKzcqgQ)
+* Homework: see [homework/README.md](homework/README.md)
 
+## Further reading
 * Tools for experiment tracking: [Comet](https://www.comet.ml/site/), [Neptune](https://neptune.ai/), [Sacred](https://github.com/IDSIA/sacred), [Weights and Biases](https://wandb.ai/), [ClearML](https://clear.ml/)
 * [DVC](https://dvc.org/) and [Pachyderm](https://www.pachyderm.com/) for artifact versioning
 * [Hydra documentation](https://hydra.cc/docs/intro/)
