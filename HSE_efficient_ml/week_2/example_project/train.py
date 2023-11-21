@@ -47,7 +47,7 @@ def main():
         dataset=test_dataset, batch_size=config["batch_size"]
     )
 
-    device = torch.device("cuda")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     model = resnet18(
         pretrained=False,
@@ -99,7 +99,9 @@ def main():
                     step=epoch * len(train_dataset) + (i + 1) * config["batch_size"],
                 )
     torch.save(model.state_dict(), "model.pt")
-
+    artifact = wandb.Artifact("resnet", type="model")
+    artifact.add_file("model.pt")
+    wandb.run.log_artifact(artifact)
     with open("run_id.txt", "w+") as f:
         print(wandb.run.id, file=f)
 
