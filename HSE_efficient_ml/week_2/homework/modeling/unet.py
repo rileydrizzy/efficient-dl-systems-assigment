@@ -33,7 +33,9 @@ class ConvBlock(nn.Module):
 class DownBlock(nn.Module):
     def __init__(self, in_channels: int, out_channels: int):
         super().__init__()
-        self.layers = nn.Sequential(ConvBlock(in_channels, out_channels), nn.MaxPool2d(2))
+        self.layers = nn.Sequential(
+            ConvBlock(in_channels, out_channels), nn.MaxPool2d(2)
+        )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.layers(x)

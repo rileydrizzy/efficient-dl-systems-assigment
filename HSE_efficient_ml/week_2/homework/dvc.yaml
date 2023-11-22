@@ -1,0 +1,15 @@
+stages:
+  tests:
+    cmd: pytest
+    deps:
+    - test_model.py
+    - test_pipeline.py
+    outs:
+    - 
+  train:
+    cmd: python main.py
+    deps:
+    - CIFAR10
+    - training.py
+    outs:
+    - model.pt
