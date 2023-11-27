@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 set_environment_variables.sh
+outputs
+dey.py
