@@ -9,6 +9,8 @@ optimizer:
   SGD:
     lr: 0.01  # Learning rate for the alternate optimizer
     momentum: 0.9
+      lr: 0.01  # Learning rate for the alternate optimizer
+      momentum: 0.9
   Adam:
     lr: 1e-5
     
