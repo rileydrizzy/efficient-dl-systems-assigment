@@ -1,7 +1,4 @@
 # Hydra Configuration File
-defaults:
-  - optimizer: default_optimizer
-
 params:
   batchsize: 5
   num_workers: 1
@@ -9,21 +6,18 @@ params:
   random_flip: true
 
 optimizer:
-  default_optimizer:
-    name: adam
-    lr: 1e-5
-
-  alternate_optimizer:
-    name: sgd
+  SGD:
     lr: 0.01  # Learning rate for the alternate optimizer
     momentum: 0.9
-
+  Adam:
+    lr: 1e-5
+    
 model_params:
   UnetModel:
     hidden_size: 128
-    out_channels: 3
-    in_channels: 3
+    out_channel: 3
+    in_channel: 3
 
   DiffusionModel:
-    betas: (1e-4, 0.02)
+    betas: [1e-4, 0.02]
     num_timesteps: 1000

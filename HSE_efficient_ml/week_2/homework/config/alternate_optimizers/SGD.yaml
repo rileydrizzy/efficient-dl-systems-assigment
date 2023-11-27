@@ -1,0 +1,5 @@
+# SGD Optim
+ optimizer:
+  name: SGD
+  lr: 0.01  # Learning rate for the alternate optimizer
+  momentum: 0.9
