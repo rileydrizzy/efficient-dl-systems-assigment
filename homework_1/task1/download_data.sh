@@ -5,7 +5,7 @@
 # It uses wget to download the dataset from a specified URL, unzips the downloaded file, 
 # and then removes any unnecessary files such as .DS_Store and the original zip file to clean up the directory.
 
-#TODO as a README : Ensure that the script is executable by setting the appropriate permissions, and provide instructions on how to do this if necessary (e.g., using chmod +x download_data.sh).
+#TODO as a README : Ensure that the script is executable by setting the appropriate permissions chmod +x download_data.sh).
 
 
 #Logger
@@ -15,13 +15,15 @@ log(){
     echo "$(date '+') - $1" | tee -a "$LOG_FILE"
 }
 
-
 # Download and unpack data
-
-log "Downloading file"
-mkdir -p ./data && sudo wget -P ./data https://www.dropbox.com/s/tc1qo73rrm3gt3m/CARVANA.zip
-log "Unzipping file"
-unzip -q ./data/CARVANA.zip -d ./data
-log "Removing unnecessary files"
-rm -rf ./data/train/.DS_Store ./data/train_masks/.DS_Store ./data/CARVANA.zip
-log "Script complete"
+if [ -d "./data" ]; then
+    log "Data directory already exists. Skipping download."
+else
+    log "Downloading file"
+    mkdir -p ./data && wget -P ./data https://www.dropbox.com/s/tc1qo73rrm3gt3m/CARVANA.zip
+    log "Unzipping file"
+    unzip -q ./data/CARVANA.zip -d ./data
+    log "Removing unnecessary files"
+    rm -rf ./data/train/.DS_Store ./data/train_masks/.DS_Store ./data/CARVANA.zip
+    log "Script complete"
+fi
