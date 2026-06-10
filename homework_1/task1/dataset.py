@@ -15,7 +15,6 @@ Functions:
 Author: Ladipo Ipadeola
 Date: 06/06/2026
 """
-from logger_setup import setup_logger
 import os
 import matplotlib.pyplot as plt
 import numpy as np
