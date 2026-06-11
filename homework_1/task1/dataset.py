@@ -25,7 +25,7 @@ from torch.utils.data.dataset import Dataset
 from torchvision import transforms
 
 # Bach size and image shape constants for data loading and preprocessing
-BATCH_SIZE = 128
+BATCH_SIZE = 64
 IMAGE_SHAPE = (256, 256)
 
 
