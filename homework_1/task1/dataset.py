@@ -16,6 +16,7 @@ Author: Ladipo Ipadeola
 Date: 06/06/2026
 """
 import os
+from os.path import isfile, join
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
@@ -65,30 +66,28 @@ class Carvana(Dataset):
         self.transform = transform
         (self.data_path, self.labels_path) = ([], [])
 
-    def load_images(path):
-        """
-        Load image file paths from the specified directory.
+        def load_images(path):
+            """
+            Load image file paths from the specified directory.
 
-        Parameters
-        ----------
-        path: str
-            The directory from which to load image file paths.
-        Returns
-        -------
-        list
-            A sorted list of image file paths in the specified directory.
+            Parameters
+            ----------
+            path: str
+                The directory from which to load image file paths.
+            Returns
+            -------
+            list
+                A sorted list of image file paths in the specified directory.
 
-        """
-        images_dir = [os.join(path, file) for file in os.listdir(
-            path) if os.isfile(os.join(path, file))]
-        images_dir.sort()
-        return images_dir
-    # BUG
-    # self.data_path = load_images(self.root + "/train")
-    # self.labels_path = load_images(self.root + "/train_masks")
+            """
+            images_dir = [join(path, file) for file in os.listdir(
+                path) if isfile(join(path, file))]
+            images_dir.sort()
+            return images_dir
+        self.data_path = load_images(self.root + "/data/train")
+        self.labels_path = load_images(self.root + "/data/train_masks")
 
     def __getitem__(self, index):
-        super().__getitem__(index)
         img = Image.open(self.data_path[index])
         target = Image.open(self.labels_path[index])
 
@@ -111,7 +110,7 @@ def get_train_data():
         [transforms.Resize(IMAGE_SHAPE), transforms.ToTensor()])
     train_dataset = Carvana(root='.', transform=transform_pipeline)
     train_loader = torch.utils.data.DataLoader(
-        dataset=train_dataset, batch_size=BATCH_SIZE, pin_memory=True, num_workers=4)
+        dataset=train_dataset, batch_size=BATCH_SIZE, pin_memory=False, num_workers=0)
 
     return train_loader
 
