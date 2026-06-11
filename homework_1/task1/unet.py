@@ -23,7 +23,7 @@ import torch.nn.functional as F
 
 class ConvdBlock(nn.Module):
     def __init__(self, in_size, out_size, kernel=3, stride=1, padding=1):
-        super.__init__()
+        super().__init__()
         self.Convd_layer = nn.Conv2d(
             in_channels=in_size, out_channels=out_size, kernel_size=kernel, padding=padding, stride=stride)
         self.Relu_layer = nn.modules.activation.ReLU(inplace=True)
@@ -38,7 +38,7 @@ class ConvdBlock(nn.Module):
 
 class Unet(nn.Module):
     def __init__(self):
-        super.__init__()
+        super().__init__()
         self.down_1 = nn.Sequential(ConvdBlock(
             in_size=3, out_size=16), ConvdBlock(in_size=16, out_size=32, stride=2))
         self.down_2 = nn.Sequential(ConvdBlock(
@@ -57,7 +57,7 @@ class Unet(nn.Module):
         skip_1 = self.down_1(inputs)
         outs = self.maxpool_layer(skip_1)
         skip_2 = self.down_2(outs)
-        outs = self.maxpool_layer(outs)
+        outs = self.maxpool_layer(skip_2)
         outs = self.middle(outs)
         outs = F.interpolate(outs, scale_factor=2)
         outs = torch.concat([skip_2, outs], dim=1)
