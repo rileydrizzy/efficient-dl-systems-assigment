@@ -1,0 +1,9 @@
+PROMPT_DIRTRIM=2
+
+TO READ:
+    1) AMP
+    2) Loss Scalling
+    2) write custom code i pytorch training
+
+
+98.0768 - 3 epoch
