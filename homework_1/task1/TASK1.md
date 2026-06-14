@@ -1,0 +1,1 @@
+#TODO as a README : Ensure that the script is executable by setting the appropriate permissions chmod +x download_data.sh).
